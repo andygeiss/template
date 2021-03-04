@@ -2,6 +2,8 @@ package main
 
 import (
 	"log"
+	"net/http"
+	_ "net/http/pprof"
 )
 
 var (
@@ -12,4 +14,11 @@ var (
 
 func main() {
 	log.Printf("%s %s (%s)\n", name, version, build)
+
+	sut := func(w http.ResponseWriter, r *http.Request) {
+
+	}
+
+	http.HandleFunc("/", sut)
+	http.ListenAndServe(":3000", nil)
 }
