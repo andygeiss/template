@@ -9,3 +9,5 @@
 ## Installation
 
 ...
+
+![screenshot](screenshot.png)
