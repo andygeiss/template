@@ -17,7 +17,10 @@ pprof :
 	@go tool pprof out.dump
 
 profile :
-	@curl -s "localhost:3000/debug/pprof/profile?seconds=10" > out.dump
+	@curl -s http://localhost:3000/debug/pprof/profile?seconds=10 > out.dump
+
+request :
+	@curl -s http://localhost:3000/
 
 run :
 	$(BIN)

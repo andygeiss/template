@@ -17,7 +17,7 @@ func (a *Tradesman) Receive(message interface{}) {
 	switch message.(type) {
 	case messages.ApplyForMembership:
 		a.logger.Print("clients.Tradesman ApplyForMembership received")
-		a.logger.Print("clients.Tradesman VerifyApplication send")
+		a.logger.Print("clients.Tradesman VerifyApplication sent")
 		a.Send(messages.VerifyApplication{})
 	case messages.Error:
 		a.logger.Print("clients.Tradesman Error received")

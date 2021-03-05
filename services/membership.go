@@ -24,10 +24,10 @@ func (a *MembershipManager) Receive(message interface{}) {
 		member := a.memberAccess.GetMemberByID(id)
 		if valid := a.regulationsEngine.ValidateMember(member); valid {
 			a.Send(messages.TradesmanOrContractorApproved{})
-			a.logger.Print("core.MembershipManager TradesmanOrContractorApproved send")
+			a.logger.Print("core.MembershipManager TradesmanOrContractorApproved sent")
 		} else {
 			a.Send(messages.Error{})
-			a.logger.Print("core.MembershipManager Error send")
+			a.logger.Print("core.MembershipManager Error sent")
 		}
 	}
 }
