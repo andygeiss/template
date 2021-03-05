@@ -1,7 +1,6 @@
 package clients
 
 import (
-	"github.com/andygeiss/template/events"
 	"github.com/andygeiss/template/messages"
 	"github.com/andygeiss/utilities/logging"
 	"github.com/andygeiss/utilities/messaging"
@@ -22,7 +21,7 @@ func (a *Tradesman) Receive(message interface{}) {
 		a.Send(messages.VerifyApplication{})
 	case messages.Error:
 		a.logger.Print("clients.Tradesman Error received")
-	case events.TradesmanOrContractorApproved:
+	case messages.TradesmanOrContractorApproved:
 		a.logger.Print("clients.Tradesman TradesmanOrContractorApproved received")
 		a.logger.Print("clients.Tradesman Result displayed")
 	}

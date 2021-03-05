@@ -1,7 +1,6 @@
 package core
 
 import (
-	"github.com/andygeiss/template/events"
 	"github.com/andygeiss/template/messages"
 	"github.com/andygeiss/template/resources"
 	"github.com/andygeiss/utilities/logging"
@@ -20,15 +19,15 @@ type MembershipManager struct {
 func (a *MembershipManager) Receive(message interface{}) {
 	switch message.(type) {
 	case messages.VerifyApplication:
-		a.logger.Print("core.MembershipManager messages.VerifyApplication received")
+		a.logger.Print("core.MembershipManager VerifyApplication received")
 		id := "foo@bar.com"
 		member := a.memberAccess.GetMemberByID(id)
 		if valid := a.regulationsEngine.ValidateMember(member); valid {
-			a.Send(events.TradesmanOrContractorApproved{})
-			a.logger.Print("core.MembershipManager events.TradesmanOrContractorApproved send")
+			a.Send(messages.TradesmanOrContractorApproved{})
+			a.logger.Print("core.MembershipManager TradesmanOrContractorApproved send")
 		} else {
 			a.Send(messages.Error{})
-			a.logger.Print("core.MembershipManager messages.Error send")
+			a.logger.Print("core.MembershipManager Error send")
 		}
 	}
 }
