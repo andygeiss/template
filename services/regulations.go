@@ -1,4 +1,4 @@
-package core
+package services
 
 import (
 	"github.com/andygeiss/template/resources"

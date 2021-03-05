@@ -6,9 +6,9 @@ import (
 	_ "net/http/pprof"
 
 	"github.com/andygeiss/template/clients"
-	"github.com/andygeiss/template/core"
 	"github.com/andygeiss/template/messages"
 	"github.com/andygeiss/template/resources"
+	"github.com/andygeiss/template/services"
 	"github.com/andygeiss/utilities/logging"
 	"github.com/andygeiss/utilities/messaging"
 )
@@ -31,9 +31,9 @@ func main() {
 		// Resources ...
 		memberAccess := resources.NewMemberAccess(logger)
 		// Engines ...
-		regulationsEngine := core.NewRegulationsEngine(logger)
+		regulationsEngine := services.NewRegulationsEngine(logger)
 		// Managers ...
-		membershipManager := core.NewMembershipManager(bus, logger, regulationsEngine, memberAccess)
+		membershipManager := services.NewMembershipManager(bus, logger, regulationsEngine, memberAccess)
 		// Register actors ...
 		bus.Subscribe(tradesmanClient)
 		bus.Subscribe(membershipManager)
