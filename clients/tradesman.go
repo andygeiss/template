@@ -12,18 +12,20 @@ type Tradesman struct {
 	logger logging.Logger
 }
 
+// Name ...
+func (a *Tradesman) Name() string {
+	return "clients.Tradesman"
+}
+
 // Receive ...
 func (a *Tradesman) Receive(message interface{}) {
-	switch message.(type) {
+	switch m := message.(type) {
 	case messages.ApplyForMembership:
-		a.logger.Print("clients.Tradesman ApplyForMembership received")
-		a.logger.Print("clients.Tradesman VerifyApplication sent")
 		a.Send(messages.VerifyApplication{})
 	case messages.Error:
-		a.logger.Print("clients.Tradesman Error received")
+		a.logger.Printf("%s Error %v", a.Name(), m)
 	case messages.TradesmanOrContractorApproved:
-		a.logger.Print("clients.Tradesman TradesmanOrContractorApproved received")
-		a.logger.Print("clients.Tradesman Result displayed")
+		a.logger.Printf("%s Result %v", a.Name(), m)
 	}
 }
 

@@ -15,19 +15,24 @@ type MembershipManager struct {
 	regulationsEngine *RegulationsEngine
 }
 
+// Name ...
+func (a *MembershipManager) Name() string {
+	return "services.MembershipManager"
+}
+
 // Receive ...
 func (a *MembershipManager) Receive(message interface{}) {
 	switch message.(type) {
 	case messages.VerifyApplication:
-		a.logger.Print("core.MembershipManager VerifyApplication received")
 		id := "foo@bar.com"
 		member := a.memberAccess.GetMemberByID(id)
+		a.logger.Printf("%s Member %v", a.Name(), member)
 		if valid := a.regulationsEngine.ValidateMember(member); valid {
+			a.logger.Printf("%s Member is valid", a.Name())
 			a.Send(messages.TradesmanOrContractorApproved{})
-			a.logger.Print("core.MembershipManager TradesmanOrContractorApproved sent")
 		} else {
+			a.logger.Printf("%s Member is invalid!", a.Name())
 			a.Send(messages.Error{})
-			a.logger.Print("core.MembershipManager Error sent")
 		}
 	}
 }

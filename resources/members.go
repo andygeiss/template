@@ -12,7 +12,6 @@ type MemberAccess struct {
 
 // GetMemberByID ...
 func (a *MemberAccess) GetMemberByID(id string) *Member {
-	a.logger.Print("resource.MemberAccess GetMemberByID called")
 	return &Member{}
 }
 

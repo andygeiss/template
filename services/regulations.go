@@ -12,7 +12,6 @@ type RegulationsEngine struct {
 
 // ValidateMember ...
 func (a *RegulationsEngine) ValidateMember(member *resources.Member) (valid bool) {
-	a.logger.Print("core.RegulationsEngine ValidateMember called")
 	return true
 }
 
